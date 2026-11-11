@@ -1,0 +1,24 @@
+[Unit]
+Description=QuanuX NemoSymphTron Sovereign C++26 CUDA & Beads Engine (Plane 1)
+Documentation=https://github.com/QuanuX/NemoSymphTron
+After=network-online.target nvidia-persistenced.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=symphony
+Group=symphony
+ExecStart=/opt/nemosymphtron/bin/nemosymphtron-engine --shm-name /nemosymphtron_fastpath --socket /run/nemosymphtron/nst_ipc.sock --arch spark
+Restart=on-failure
+RestartSec=2s
+LimitMEMLOCK=infinity
+LimitNOFILE=65536
+CPUAffinity=0-23
+Nice=-10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/run/nemosymphtron /opt/symphony/state
+
+[Install]
+WantedBy=multi-user.target

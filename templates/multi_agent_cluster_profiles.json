@@ -1,0 +1,22 @@
+{
+  "schema": "nemosymphtron.cluster.profiles.v1",
+  "patterns": [
+    {
+      "pattern_id": "PIPELINE",
+      "description": "Sequential DAG: Claude Architect -> Codex CUDA Builder -> Nemotron Quant Verifier"
+    },
+    {
+      "pattern_id": "WORKER_POOL",
+      "description": "Fan-out parallel parameter sweep across dynamic CUDA stream pool"
+    },
+    {
+      "pattern_id": "ADVERSARIAL_CROSS_CHECK",
+      "description": "Dual-harness independent verification before CAS state commit"
+    }
+  ],
+  "default_cluster_spec": {
+    "cluster_name": "nemosymphtron-multi-agent-mesh",
+    "max_concurrent_agents": 16,
+    "beads_cas_lease_ttl_sec": 60
+  }
+}

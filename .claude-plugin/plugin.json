@@ -1,0 +1,35 @@
+{
+  "name": "nemosymphtron",
+  "version": "0.2.0-alpha.1",
+  "description": "QuanuX NemoSymphTron NVIDIA Hardware Acceleration, SIV Governance, and Beads Multi-Agent Clustering Extension for Antigravity, Antigravity CLI, and Claude Code",
+  "author": {
+    "name": "QuanuX",
+    "email": "duncan@quanux.org",
+    "url": "https://quanux.org"
+  },
+  "homepage": "https://docs.quanux.org",
+  "repository": "https://github.com/QuanuX/NemoSymphTron",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "symphony",
+    "nemosymphtron",
+    "quanux",
+    "nvidia",
+    "nemotron",
+    "beads",
+    "mcp",
+    "ipc",
+    "antigravity"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "userConfig": {
+    "connection_profile": {
+      "title": "NemoSymphTron connection profile",
+      "description": "Absolute path to an operator-created mode-0600 connection.json file.",
+      "type": "file",
+      "required": true,
+      "sensitive": false
+    }
+  }
+}

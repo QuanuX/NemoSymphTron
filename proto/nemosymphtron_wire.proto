@@ -1,0 +1,202 @@
+syntax = "proto3";
+
+package nemosymphtron.ipc;
+
+enum ExecutionPriority {
+  PRIORITY_BACKGROUND = 0; // Batch / pipeline execution (e.g., Symphony-Codex sweeps)
+  PRIORITY_STANDARD   = 1; // Standard dynamic agent stream (e.g., Claude, Cursor)
+  PRIORITY_INTERRUPT  = 2; // Live operator priority override (e.g., Antigravity CLI)
+}
+
+enum BeadStatus {
+  BEAD_UNSPECIFIED = 0;
+  BEAD_PENDING     = 1;
+  BEAD_LEASED      = 2;
+  BEAD_EXECUTING   = 3;
+  BEAD_COMMITTED   = 4;
+  BEAD_FAILED      = 5;
+}
+
+enum LockAction {
+  LOCK_ACQUIRE   = 0;
+  LOCK_RELEASE   = 1;
+  LOCK_HEARTBEAT = 2;
+}
+
+enum CoordinationPattern {
+  PATTERN_PIPELINE               = 0; // A -> B sequential validation/pipeline
+  PATTERN_WORKER_POOL            = 1; // A + B atomic task queue leasing
+  PATTERN_ADVERSARIAL_CROSS_CHECK = 2; // Red-team / consensus cross-check
+}
+
+message TaskRoutingHeader {
+  string request_id             = 1;
+  string agent_id               = 2; // Dynamic harness identifier (e.g., "antigravity-01", "claude-lead")
+  string session_token          = 3;
+  ExecutionPriority priority    = 4;
+  uint64 siv_token_flags        = 5; // 64-bit SIV compliance bitmask evaluated in O(1) by C++26 engine
+  string tops_id                = 6; // Immutable Symphony TOPS scope UUID
+  string bead_id                = 7; // Optional linked Merkle-DAG TaskBead SHA-256
+}
+
+message MonteCarloVaRRequest {
+  double spot_price = 1;
+  double volatility = 2;
+  double drift      = 3;
+  uint32 paths      = 4;
+  uint32 steps      = 5;
+  uint64 seed       = 6;
+}
+
+message MonteCarloVaRResult {
+  double var_95                  = 1;
+  double var_99                  = 2;
+  double cvar_99                 = 3;
+  double expected_terminal_price = 4;
+  double execution_time_ms       = 5;
+}
+
+message CholeskyFactorRequest {
+  uint32 matrix_dim               = 1;
+  repeated float flattened_matrix = 2;
+}
+
+message CholeskyFactorResult {
+  bool is_positive_definite         = 1;
+  repeated float lower_triangular   = 2;
+  double trace_norm                 = 3;
+  double execution_time_ms          = 4;
+}
+
+message PortfolioOptimizeRequest {
+  repeated string tickers = 1;
+  string objective        = 2; // "min_risk", "max_sharpe", "mean_cvar"
+  double target_return    = 3;
+  repeated double expected_returns = 4;
+  repeated double cov_matrix       = 5;
+}
+
+message PortfolioOptimizeResult {
+  repeated double weights   = 1;
+  double portfolio_return   = 2;
+  double portfolio_vol      = 3;
+  double sharpe_ratio       = 4;
+  string solver_backend     = 5;
+  double execution_time_ms  = 6;
+}
+
+message TransactionRiskRequest {
+  string transaction_id = 1;
+  double amount         = 2;
+  string merchant_code  = 3;
+  double velocity_score = 4;
+}
+
+message TransactionRiskResult {
+  string transaction_id    = 1;
+  double anomaly_score     = 2;
+  string decision          = 3; // "APPROVE", "REVIEW", "REJECT"
+  string foundation_model  = 4;
+  double execution_time_ms = 5;
+}
+
+message FftOptionPriceRequest {
+  double spot_price     = 1;
+  double strike_price   = 2;
+  double maturity_years = 3;
+  double risk_free_rate = 4;
+  double volatility     = 5;
+  uint32 grid_points    = 6;
+}
+
+message FftOptionPriceResult {
+  double call_price        = 1;
+  double put_price         = 2;
+  double delta             = 3;
+  double execution_time_ms = 4;
+}
+
+message NcclCollectiveRequest {
+  uint32 world_size           = 1;
+  string fabric_type          = 2; // "roce_v2_200g" or "nvlink_v6_800g_sharpv4"
+  repeated float local_tensor = 3;
+}
+
+message NcclCollectiveResult {
+  repeated float reduced_tensor      = 1;
+  double effective_bandwidth_gbps    = 2;
+  bool in_network_sharp_used         = 3;
+  double execution_time_ms           = 4;
+}
+
+message TaskBead {
+  string bead_id                = 1; // SHA-256 Merkle hash of task contents + parent_bead_ids
+  repeated string parent_bead_ids = 2;
+  string target_capability      = 3;
+  bytes task_payload            = 4;
+  uint64 creation_timestamp_ns  = 5;
+  uint32 priority               = 6;
+  BeadStatus status             = 7;
+}
+
+message FileLeaseRequest {
+  string resource_uri       = 1; // e.g., "file:///workspace/models/risk_matrix.parquet"
+  string claimant_agent_id  = 2;
+  LockAction action         = 3;
+  uint64 lease_duration_ms  = 4;
+  string expected_hash      = 5; // Compare-And-Swap (CAS) digest
+  string updated_hash       = 6;
+}
+
+message FileLeaseResponse {
+  string resource_uri         = 1;
+  bool granted                = 2;
+  string holder_agent_id      = 3;
+  uint64 expires_at_ns        = 4;
+  string current_content_hash = 5;
+  bool dpu_offloaded          = 6; // True when BlueField-4 DPU lock offload is active
+  string error_message        = 7;
+}
+
+message AgentDirectMessage {
+  string message_id           = 1;
+  string source_agent_id      = 2;
+  string target_agent_id      = 3;
+  string session_id           = 4;
+  CoordinationPattern pattern = 5;
+  string intent               = 6;
+  bytes payload               = 7;
+  uint64 timestamp_ns         = 8;
+}
+
+message AgentIPCRequest {
+  TaskRoutingHeader header = 1;
+  oneof payload {
+    MonteCarloVaRRequest mc_request         = 2;
+    CholeskyFactorRequest cholesky_request  = 3;
+    PortfolioOptimizeRequest cuopt_request  = 4;
+    TransactionRiskRequest risk_request     = 5;
+    FftOptionPriceRequest fft_request       = 6;
+    NcclCollectiveRequest nccl_request      = 7;
+    FileLeaseRequest lease_request          = 8;
+    AgentDirectMessage p2p_message          = 9;
+  }
+}
+
+message AgentIPCResponse {
+  string request_id         = 1;
+  string agent_id           = 2;
+  int32 status_code         = 3; // 0 = OK, 403 = SIV Policy Violation, 409 = CAS Conflict, 500 = Engine Error
+  string error_message      = 4;
+  uint32 executed_stream_id = 5;
+  string hardware_backend   = 6;
+  oneof payload {
+    MonteCarloVaRResult mc_result         = 7;
+    CholeskyFactorResult cholesky_result  = 8;
+    PortfolioOptimizeResult cuopt_result  = 9;
+    TransactionRiskResult risk_result     = 10;
+    FftOptionPriceResult fft_result       = 11;
+    NcclCollectiveResult nccl_result      = 12;
+    FileLeaseResponse lease_result        = 13;
+  }
+}

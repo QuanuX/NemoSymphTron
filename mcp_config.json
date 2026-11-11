@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "nemosymphtron": {
+      "command": "./bin/nemosymphtron-mcp",
+      "args": [
+        "--config",
+        "${user_config.connection_profile}",
+        "--tool-catalog",
+        "./catalog/tools.json"
+      ]
+    }
+  }
+}

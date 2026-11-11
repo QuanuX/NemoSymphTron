@@ -1,0 +1,46 @@
+{
+  "apiVersion": "scv.symphony.quanux.org/v1",
+  "kind": "ClusterTopology",
+  "metadata": {
+    "name": "spark-blackwell-quant-mesh",
+    "provider": "on-prem-dgx"
+  },
+  "spec": {
+    "fabric": {
+      "type": "roce_v2",
+      "port_speed_gbps": 200,
+      "interfaces": ["enp1s0f0np0", "enp1s0f0np1"],
+      "mtu": 9000,
+      "interconnect": "qsfp56_passive_dac_ring",
+      "gpudirect_rdma": true,
+      "hardware_offload": {
+        "in_network_reduction": false,
+        "sharp_version": "none",
+        "target_dpu": "connectx-7",
+        "offload_lock_manager": false
+      }
+    },
+    "aggregate_memory_gb": 256,
+    "recommended_model_tier": "nvidia/nemotron-3-super-120b-a12b (TP=2) / Llama-405B-FP4",
+    "nodes": [
+      {
+        "id": "spark-node-01",
+        "role": "leader",
+        "arch": "aarch64_sbsa",
+        "host": "192.168.100.1",
+        "shm_path": "/nemosymphtron_fastpath",
+        "memory_pool_gb": 128,
+        "cuda_compute_sm": 120
+      },
+      {
+        "id": "spark-node-02",
+        "role": "worker",
+        "arch": "aarch64_sbsa",
+        "host": "192.168.100.2",
+        "shm_path": "/nemosymphtron_fastpath",
+        "memory_pool_gb": 128,
+        "cuda_compute_sm": 120
+      }
+    ]
+  }
+}

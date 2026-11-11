@@ -1,0 +1,58 @@
+{
+  "name": "nemosymphtron",
+  "version": "0.2.0-alpha.1",
+  "description": "QuanuX NemoSymphTron NVIDIA Hardware Acceleration, SIV Governance, and Beads Multi-Agent Clustering Extension",
+  "author": {
+    "name": "QuanuX",
+    "email": "duncan@quanux.org",
+    "url": "https://quanux.org"
+  },
+  "homepage": "https://docs.quanux.org",
+  "repository": "https://github.com/QuanuX/NemoSymphTron",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "symphony",
+    "nemosymphtron",
+    "quanux",
+    "nvidia",
+    "nemotron",
+    "beads",
+    "mcp",
+    "ipc",
+    "antigravity"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json",
+  "userConfig": {
+    "connection_profile": {
+      "title": "NemoSymphTron connection profile",
+      "description": "Absolute path to an operator-created mode-0600 connection.json file.",
+      "type": "file",
+      "required": true,
+      "sensitive": false
+    }
+  },
+  "interface": {
+    "displayName": "NemoSymphTron",
+    "shortDescription": "NVIDIA Hardware Acceleration & Nemotron Multi-Agent Clustering for Symphony",
+    "longDescription": "Connects agents to the QuanuX NemoSymphTron C++26 CUDA acceleration engine, Tri-Vector (SHV/SCV/SIV) hardware and fabric governance, and Beads multi-agent orchestration.",
+    "developerName": "QuanuX",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://quanux.org",
+    "privacyPolicyURL": "https://quanux.org/privacy",
+    "termsOfServiceURL": "https://quanux.org/symphony-plugin-terms",
+    "defaultPrompt": [
+      "Inspect the NemoSymphTron connection and verify DGX Spark / Vera-Rubin SHV hardware readiness.",
+      "Route a quantitative research prompt through the SIV Nemotron cognitive tier router.",
+      "Preview and run a Monte Carlo VaR / CVaR simulation on the NemoSymphTron CUDA engine."
+    ],
+    "brandColor": "#76B900",
+    "composerIcon": "./assets/favicon.svg",
+    "logo": "./assets/favicon-dark.svg"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "nemosymphtron",
+  "version": "0.2.0-alpha.1",
+  "description": "QuanuX NemoSymphTron NVIDIA Hardware Acceleration (DGX Spark Grace-Blackwell & Vera-Rubin), Nemotron Cognitive Orchestration, Tri-Vector (SHV/SCV/SIV) Governance, and Beads Multi-Agent Clustering Extension for Symphony.",
+  "author": {
+    "name": "QuanuX",
+    "email": "duncan@quanux.org",
+    "url": "https://quanux.org"
+  },
+  "homepage": "https://docs.quanux.org",
+  "repository": "https://github.com/QuanuX/NemoSymphTron",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "symphony",
+    "nemosymphtron",
+    "quanux",
+    "nvidia",
+    "dgx-spark",
+    "vera-rubin",
+    "nemotron",
+    "cuda",
+    "beads",
+    "siv",
+    "shv",
+    "scv",
+    "mcp",
+    "ipc",
+    "antigravity"
+  ],
+  "contextFileName": "GEMINI.md",
+  "rules": "./rules/",
+  "skills": "./skills/",
+  "mcpServers": "./mcp_config.json",
+  "userConfig": {
+    "connection_profile": {
+      "title": "NemoSymphTron connection profile",
+      "description": "Absolute path to an operator-created mode-0600 connection.json file.",
+      "type": "file",
+      "required": true,
+      "sensitive": false
+    }
+  }
+}

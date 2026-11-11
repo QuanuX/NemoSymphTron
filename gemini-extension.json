@@ -1,0 +1,17 @@
+{
+  "name": "quanux-nemosymphtron",
+  "version": "0.2.0-alpha.1",
+  "description": "QuanuX NemoSymphTron NVIDIA Hardware Acceleration, Nemotron Cognitive Orchestration, Tri-Vector (SHV/SCV/SIV) Governance, and Beads Multi-Agent Clustering Extension for Antigravity, Antigravity CLI (agy), and Gemini CLI.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "nemosymphtron": {
+      "command": "${extensionPath}/bin/nemosymphtron-mcp",
+      "args": [
+        "--config",
+        "${HOME}/.config/nemosymphtron/connection.json",
+        "--tool-catalog",
+        "${extensionPath}/catalog/tools.json"
+      ]
+    }
+  }
+}

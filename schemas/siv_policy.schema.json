@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quanux.org/schemas/nemosymphtron/siv_policy.schema.json",
+  "title": "NemoSymphTron SIV Policy Schema (v1)",
+  "description": "64-bit Symphony Inference Vector (SIV) capability bitmask and multi-agent cognitive authorization policy.",
+  "type": "object",
+  "required": [
+    "schema",
+    "tops_id",
+    "agents"
+  ],
+  "properties": {
+    "schema": {
+      "const": "nemosymphtron.siv.policy.v1"
+    },
+    "tops_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "default_deny": {
+      "type": "boolean",
+      "default": true
+    },
+    "agents": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "agent_id",
+          "role",
+          "bitmask",
+          "max_vram_mb"
+        ],
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "architect",
+              "coder",
+              "quant",
+              "auditor"
+            ]
+          },
+          "bitmask": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "bitmask_hex": {
+            "type": "string",
+            "pattern": "^0x[0-9A-Fa-f]{1,16}$"
+          },
+          "max_vram_mb": {
+            "type": "integer",
+            "minimum": 256
+          },
+          "allowed_models": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "NEMOTRON_3_ULTRA",
+                "NEMOTRON_3_SUPER",
+                "NEMOTRON_3_NANO",
+                "NEMOTRON_RAG_VLM"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

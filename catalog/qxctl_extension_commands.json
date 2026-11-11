@@ -1,0 +1,1164 @@
+{
+  "schema": "symphony.qxctl.extension-commands.v1",
+  "extension": "nemosymphtron",
+  "version": "0.2.0-alpha.1",
+  "protocol": "symphony.qxctl.command-registry.v1",
+  "registry_digest": "sha256:d6186f4e336c60a34f89f49fd19bfaed7fa0eb40db73e75961cfdd2d30f5db8f",
+  "commands": [
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:commands.list",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:qxctl.command-registry",
+          "interaction": "discover"
+        }
+      ],
+      "grammar": "qxctl commands list [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:commands.manifest",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:qxctl.command-registry",
+          "interaction": "discover"
+        }
+      ],
+      "grammar": "qxctl commands manifest [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.status",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.runtime",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl nst status [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.doctor",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.runtime",
+          "interaction": "diagnose"
+        }
+      ],
+      "grammar": "qxctl nst doctor [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.schema",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.contracts",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl nst schema [--name VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.template",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.contracts",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl nst template [--name VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.telemetry",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.telemetry",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl nst telemetry [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.quant.run",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.quant",
+          "interaction": "execute"
+        }
+      ],
+      "grammar": "qxctl nst quant run [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "evidence_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:nst.status",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.cluster.apply",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.cluster",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl nst cluster apply [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:nst.cluster.recover",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:nst.cluster.recover",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:nst.cluster",
+          "interaction": "recover"
+        }
+      ],
+      "grammar": "qxctl nst cluster recover [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:nst.status",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl siv inspect [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.schema",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl siv schema [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.template",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl siv template [--profile VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.audit-log",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl siv audit-log [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--limit UINT64] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.policy.propose",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "propose"
+        }
+      ],
+      "grammar": "qxctl siv policy propose [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--policy VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "proposal_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.policy.apply",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl siv policy apply [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--policy VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.agent.authorize",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "authorize"
+        }
+      ],
+      "grammar": "qxctl siv agent authorize [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--bitmask VALUE] [--max-vram-mb UINT64] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.agent.revoke",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.governance",
+          "interaction": "revoke"
+        }
+      ],
+      "grammar": "qxctl siv agent revoke [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:siv.model.route",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:siv.routing",
+          "interaction": "propose"
+        }
+      ],
+      "grammar": "qxctl siv model route [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--prompt VALUE] [--complexity VALUE] [--domain-hint VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "proposal_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:siv.inspect",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.dag.list",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.dag",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl beads dag list [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.dag.propose",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.dag",
+          "interaction": "propose"
+        }
+      ],
+      "grammar": "qxctl beads dag propose [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "proposal_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.dag.list",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.dag.commit",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.dag",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl beads dag commit [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--bead-id VALUE] [--status VALUE] [--agent-id VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.dag.list",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.leases.list",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.leases",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl beads leases list [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.leases.checkout",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.leases",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl beads leases checkout [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--file VALUE] [--duration-sec UINT64] [--expected-sha256 VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.leases.list",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.leases.release",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.leases",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl beads leases release [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--file VALUE] [--new-sha256 VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.leases.list",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.leases.unlock",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.leases",
+          "interaction": "recover"
+        }
+      ],
+      "grammar": "qxctl beads leases unlock [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--file VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.leases.list",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.bus.poll",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.bus",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl beads bus poll [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--agent-id VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:beads.bus.dispatch",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:beads.bus",
+          "interaction": "execute"
+        }
+      ],
+      "grammar": "qxctl beads bus dispatch [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--sender VALUE] [--recipient VALUE] [--pattern VALUE] [--bead-id VALUE] [--payload VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "evidence_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:beads.bus.poll",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:shv.nst-discover",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:shv.hardware",
+          "interaction": "discover"
+        }
+      ],
+      "grammar": "qxctl shv nst-discover [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--arch VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:shv.nst-verify-isolation",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:shv.hardware",
+          "interaction": "verify"
+        }
+      ],
+      "grammar": "qxctl shv nst-verify-isolation [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:shv.nst-lock",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:shv.hardware",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl shv nst-lock [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:shv.nst-verify-isolation",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:shv.nst-benchmark-bus",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:shv.hardware",
+          "interaction": "benchmark"
+        }
+      ],
+      "grammar": "qxctl shv nst-benchmark-bus [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--arch VALUE] [--iterations UINT64] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "evidence_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:shv.nst-discover",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "none",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:scv.nst-inspect-fabric",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:scv.fabric",
+          "interaction": "inspect"
+        }
+      ],
+      "grammar": "qxctl scv nst-inspect-fabric [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--arch VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "read_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": null,
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_grant",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:scv.nst-test-fabric",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:scv.fabric",
+          "interaction": "verify"
+        }
+      ],
+      "grammar": "qxctl scv nst-test-fabric [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "evidence_only",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:scv.nst-inspect-fabric",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    },
+    {
+      "aliases": [],
+      "authority_mode": "ssiag_and_stav",
+      "backend_operation_ids": [],
+      "command_id": "qxcmd:nemosymphtron:scv.nst-cluster-up",
+      "deprecated_in": null,
+      "feature_bindings": [
+        {
+          "feature_id": "ssfv:nemosymphtron:scv.fabric",
+          "interaction": "apply"
+        }
+      ],
+      "grammar": "qxctl scv nst-cluster-up [--prefix VALUE] [--version VALUE] [--tops-id VALUE] [--spec VALUE] [--expected-state-digest VALUE] [--engine-socket VALUE] [--json]",
+      "infrastructure_purpose": "nvidia_cognitive_and_quant_acceleration",
+      "input_protocols": [
+        "nemosymphtron.control.v1"
+      ],
+      "introduced_in": "0.2.0-alpha.1",
+      "json_output": true,
+      "mutability": "permission_backed_mutation",
+      "noninteractive": true,
+      "output_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "recovery_command_id": "qxcmd:nemosymphtron:scv.nst-inspect-fabric",
+      "replacement_ids": [],
+      "result_validation_protocols": [
+        "nemosymphtron.result.v1"
+      ],
+      "status": "experimental",
+      "target_scope": "local",
+      "visibility": "public"
+    }
+  ]
+}

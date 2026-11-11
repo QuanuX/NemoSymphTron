@@ -1,0 +1,15 @@
+build/
+bin/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.pb.cc
+*.pb.h
+*_pb2.py
+__pycache__/
+*.pyc
+.DS_Store
+connection.json
+*.sock

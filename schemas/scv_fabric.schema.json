@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quanux.org/schemas/nemosymphtron/scv_fabric.schema.json",
+  "title": "NemoSymphTron SCV Fabric Vector Schema (v1)",
+  "description": "Symphony Cloud Vector (SCV) network fabric topology for ConnectX-7 200GbE RoCE v2 and ConnectX-8 800G InfiniBand / NVLink 6 Switch (SHARPv4).",
+  "type": "object",
+  "required": [
+    "cluster_id",
+    "architecture_generation",
+    "nic_model",
+    "primary_transport",
+    "link_speed_gbps",
+    "mtu_bytes",
+    "gpudirect_rdma_enabled",
+    "nccl_env",
+    "nodes"
+  ],
+  "properties": {
+    "cluster_id": {
+      "type": "string"
+    },
+    "architecture_generation": {
+      "type": "string",
+      "enum": [
+        "BLACKWELL_GB10_SM120",
+        "VERA_RUBIN_SM130"
+      ]
+    },
+    "nic_model": {
+      "type": "string"
+    },
+    "primary_transport": {
+      "type": "string"
+    },
+    "link_speed_gbps": {
+      "type": "integer",
+      "minimum": 100
+    },
+    "mtu_bytes": {
+      "type": "integer",
+      "minimum": 1500
+    },
+    "gpudirect_rdma_enabled": {
+      "type": "boolean"
+    },
+    "sharp_v4_in_network_reductions": {
+      "type": "boolean"
+    },
+    "nccl_env": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "node_id",
+          "hostname",
+          "rdma_device",
+          "netdev_interface",
+          "roce_ip_cidr",
+          "tensor_parallel_rank",
+          "pipeline_parallel_rank"
+        ],
+        "properties": {
+          "node_id": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "rdma_device": {
+            "type": "string"
+          },
+          "netdev_interface": {
+            "type": "string"
+          },
+          "roce_ip_cidr": {
+            "type": "string"
+          },
+          "tensor_parallel_rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "pipeline_parallel_rank": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

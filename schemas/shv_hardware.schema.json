@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quanux.org/schemas/nemosymphtron/shv_hardware.schema.json",
+  "title": "NemoSymphTron SHV Hardware Vector Schema (v1)",
+  "description": "Symphony Hardware Vector (SHV) physical topology, CPU core pinning, NVLink-C2C coherent memory, and GPU architecture constraints for DGX Spark (Blackwell sm_120) and Vera-Rubin (sm_130).",
+  "type": "object",
+  "required": [
+    "architecture_generation",
+    "sm_arch",
+    "soc_name",
+    "total_arm_cores",
+    "symphony_pinned_cores",
+    "agent_pinned_cores",
+    "coherent_interconnect",
+    "coherent_bandwidth_gbps",
+    "total_unified_memory_bytes",
+    "symphony_locked_memory_bytes",
+    "agent_nim_budget_bytes",
+    "quant_cuda_pool_bytes"
+  ],
+  "properties": {
+    "architecture_generation": {
+      "type": "string",
+      "enum": [
+        "BLACKWELL_GB10_SM120",
+        "VERA_RUBIN_SM130"
+      ]
+    },
+    "sm_arch": {
+      "type": "string",
+      "enum": [
+        "sm_120",
+        "sm_130"
+      ]
+    },
+    "soc_name": {
+      "type": "string"
+    },
+    "total_arm_cores": {
+      "type": "integer",
+      "minimum": 8
+    },
+    "performance_cores": {
+      "type": "string"
+    },
+    "efficiency_cores": {
+      "type": "string"
+    },
+    "symphony_pinned_cores": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "minItems": 1
+    },
+    "agent_pinned_cores": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "minItems": 1
+    },
+    "coherent_interconnect": {
+      "type": "string"
+    },
+    "coherent_bandwidth_gbps": {
+      "type": "number",
+      "minimum": 100.0
+    },
+    "total_unified_memory_bytes": {
+      "type": "integer",
+      "minimum": 1073741824
+    },
+    "symphony_locked_memory_bytes": {
+      "type": "integer",
+      "minimum": 268435456
+    },
+    "agent_nim_budget_bytes": {
+      "type": "integer",
+      "minimum": 1073741824
+    },
+    "quant_cuda_pool_bytes": {
+      "type": "integer",
+      "minimum": 268435456
+    },
+    "supported_precisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "require_mlockall": {
+      "type": "boolean"
+    },
+    "verify_pcie_p2p_disabled": {
+      "type": "boolean"
+    },
+    "verify_coherent_c2c_active": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,75 @@
+{
+  "manifest_version": "0.3",
+  "name": "nemosymphtron",
+  "display_name": "NemoSymphTron",
+  "version": "0.2.0-alpha.1",
+  "description": "NVIDIA Hardware Acceleration, Nemotron Orchestration, and Beads Multi-Agent Clustering for QuanuX Symphony.",
+  "long_description": "Connects an MCP host to an explicitly configured QuanuX NemoSymphTron installation through its C++26 qxctl extension and Protobuf/SHM engine.",
+  "author": {
+    "name": "QuanuX",
+    "email": "duncan@quanux.org",
+    "url": "https://quanux.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuanuX/NemoSymphTron"
+  },
+  "homepage": "https://docs.quanux.org",
+  "documentation": "https://github.com/QuanuX/NemoSymphTron#readme",
+  "support": "https://quanux.org/contact",
+  "privacy_policies": [
+    "https://quanux.org/privacy"
+  ],
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "symphony",
+    "nemosymphtron",
+    "quanux",
+    "nvidia",
+    "nemotron",
+    "beads",
+    "mcp",
+    "ipc"
+  ],
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/nemosymphtron-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/nemosymphtron-mcp",
+      "args": [
+        "--config",
+        "${user_config.connection_profile}",
+        "--tool-catalog",
+        "${__dirname}/catalog/tools.json"
+      ]
+    }
+  },
+  "user_config": {
+    "connection_profile": {
+      "type": "file",
+      "title": "NemoSymphTron connection profile",
+      "description": "Absolute path to an operator-created mode-0600 connection.json file.",
+      "required": true,
+      "sensitive": false
+    }
+  },
+  "tools_generated": true,
+  "prompts_generated": false,
+  "prompts": [
+    {
+      "name": "nemosymphtron-admin",
+      "description": "Structured workflow for inspecting or administering a configured NemoSymphTron installation.",
+      "arguments": [
+        "goal"
+      ],
+      "text": "Inspect nemosymphtron_connection first, then use the individually exposed operation tools for {{goal}}. Never treat preview as owner authorization or retry unknown non-read outcomes automatically."
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "linux"
+    ],
+    "runtimes": {}
+  }
+}

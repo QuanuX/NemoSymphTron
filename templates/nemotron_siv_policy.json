@@ -1,0 +1,99 @@
+{
+  "apiVersion": "siv.symphony.quanux.org/v1",
+  "kind": "IntelligenceVector",
+  "metadata": {
+    "name": "dgx-spark-quant-intelligence",
+    "version": "1.0.0"
+  },
+  "spec": {
+    "cognitive_core": {
+      "provider": "nvidia-nim",
+      "endpoint": "http://127.0.0.1:8000/v1",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b",
+      "auxiliary_model": "nvidia/nemotron-nano-9b-nvfp4",
+      "rubin_moe_model": "nvidia/nemotron-4-400b-moe-nvfp4",
+      "quant_reasoning_mode": "strict_function_calling"
+    },
+    "governance_and_rails": {
+      "enforce_nemo_guardrails": true,
+      "hallucination_guard": "deterministic_cuda_delegation",
+      "risk_limits": {
+        "max_monte_carlo_paths": 100000000,
+        "max_matrix_dimensions": 10000
+      }
+    },
+    "agent_roles": [
+      {
+        "id": "claude-architect",
+        "class": "strategic_orchestrator",
+        "allowed_tools": [
+          "nemotron_broker",
+          "compute_var_simulation",
+          "cholesky_factor",
+          "optimize_portfolio_cuopt",
+          "score_transaction_risk",
+          "fft_option_price",
+          "nccl_allreduce",
+          "beads_lease",
+          "beads_p2p"
+        ],
+        "max_tokens_per_call": 8192,
+        "can_spawn_subagents": true,
+        "priority_override": false
+      },
+      {
+        "id": "antigravity-operator",
+        "class": "interactive_terminal",
+        "allowed_tools": [
+          "nemotron_broker",
+          "compute_var_simulation",
+          "cholesky_factor",
+          "optimize_portfolio_cuopt",
+          "score_transaction_risk",
+          "fft_option_price",
+          "nccl_allreduce",
+          "beads_lease",
+          "beads_lease_override",
+          "beads_p2p",
+          "health_inspect"
+        ],
+        "max_tokens_per_call": 8192,
+        "can_spawn_subagents": true,
+        "priority_override": true
+      },
+      {
+        "id": "symphony-codex",
+        "class": "pipeline_executor",
+        "allowed_tools": [
+          "nemotron_broker",
+          "compute_var_simulation",
+          "cholesky_factor",
+          "optimize_portfolio_cuopt",
+          "score_transaction_risk",
+          "fft_option_price",
+          "nccl_allreduce",
+          "beads_lease",
+          "beads_p2p"
+        ],
+        "max_tokens_per_call": 16384,
+        "can_spawn_subagents": false,
+        "priority_override": false
+      },
+      {
+        "id": "cursor-worker",
+        "class": "specialist_worker",
+        "allowed_tools": [
+          "compute_var_simulation",
+          "cholesky_factor",
+          "optimize_portfolio_cuopt",
+          "fft_option_price",
+          "beads_lease",
+          "beads_p2p"
+        ],
+        "max_tokens_per_call": 4096,
+        "can_spawn_subagents": false,
+        "priority_override": false
+      }
+    ]
+  }
+}

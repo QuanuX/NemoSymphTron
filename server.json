@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.QuanuX/nemosymphtron",
+  "title": "NemoSymphTron",
+  "description": "NVIDIA DGX Spark & Vera-Rubin Hardware Acceleration, Nemotron Cognitive Orchestration, and Beads Multi-Agent Clustering Extension for QuanuX Symphony.",
+  "version": "0.2.0-alpha.1",
+  "repository": {
+    "url": "https://github.com/QuanuX/NemoSymphTron",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/QuanuX/NemoSymphTron#readme",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/QuanuX/NemoSymphTron/releases/download/v0.2.0-alpha.1/nemosymphtron-0.2.0-alpha.1.mcpb",
+      "version": "0.2.0-alpha.1",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

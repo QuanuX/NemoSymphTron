@@ -1,0 +1,53 @@
+{
+  "apiVersion": "shv.symphony.quanux.org/v1",
+  "kind": "HardwareVector",
+  "metadata": {
+    "node_id": "node-rubin-01",
+    "chassis_type": "nvidia-vera-rubin-arm64"
+  },
+  "spec": {
+    "cpu_topology": {
+      "arch": "aarch64_v9",
+      "total_cores": 96,
+      "numa_nodes": [0],
+      "affinity_masks": {
+        "sovereign_symphony_fastpath": "0-23",
+        "dgx_cuda_daemon_threads": "24-31",
+        "dynamic_agent_gateway": "32-47",
+        "system_os_reserved": "48-95"
+      }
+    },
+    "memory_topology": {
+      "total_unified_memory_gb": 288,
+      "interconnect": "nvlink_c2c_gen2",
+      "coherency": true,
+      "bandwidth_tb_per_sec": 1.8,
+      "mlockall_enforced": true,
+      "allocations": {
+        "symphony_pinned_shm_mb": 16384,
+        "accelerator_direct_pool_gb": 192,
+        "agent_gateway_limit_mb": 8192
+      }
+    },
+    "accelerator": {
+      "device_index": 0,
+      "model": "Rubin-SM130",
+      "target_sm": "sm_130",
+      "compute_mode": "ExclusiveProcess",
+      "power_limit_watts": 700,
+      "precision_modes": ["NVFP4", "NVFP2", "FP8_E4M3", "FP16", "FP32"],
+      "clocks": {
+        "graphics_mhz": "max_locked",
+        "memory_mhz": "max_locked"
+      },
+      "stream_priorities": {
+        "symphony_hotpath": -2,
+        "dynamic_agents": 0
+      },
+      "thermal_guard": {
+        "throttle_temp_celsius": 85,
+        "shutdown_temp_celsius": 92
+      }
+    }
+  }
+}

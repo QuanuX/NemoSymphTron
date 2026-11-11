@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quanux.org/schemas/nemosymphtron/beads_dag.schema.json",
+  "title": "NemoSymphTron Beads Merkle-DAG & Lease Schema (v1)",
+  "description": "Merkle-DAG TaskBead node, CAS FileLease, and P2P AgentDirectMessage contract.",
+  "type": "object",
+  "required": [
+    "bead_id",
+    "intent_summary",
+    "assigned_role"
+  ],
+  "properties": {
+    "bead_id": {
+      "type": "string"
+    },
+    "parent_hashes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "intent_summary": {
+      "type": "string"
+    },
+    "assigned_role": {
+      "type": "string",
+      "enum": [
+        "architect",
+        "coder",
+        "quant",
+        "auditor"
+      ]
+    },
+    "assigned_agent_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "LEASED",
+        "VERIFYING",
+        "COMMITTED",
+        "FAILED"
+      ]
+    },
+    "merkle_hash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

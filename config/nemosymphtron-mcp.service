@@ -1,0 +1,22 @@
+[Unit]
+Description=QuanuX NemoSymphTron C++26 MCP & Local Unix-Socket IPC Gateway (Plane 2)
+Documentation=https://github.com/QuanuX/NemoSymphTron
+After=nemosymphtron-engine.service
+Requires=nemosymphtron-engine.service
+
+[Service]
+Type=simple
+User=symphony
+Group=symphony
+ExecStart=/opt/nemosymphtron/bin/nemosymphtron-mcp --config /etc/nemosymphtron/connection.json --tool-catalog /opt/nemosymphtron/share/nemosymphtron/catalog/tools.json --listen /run/nemosymphtron/mcp.sock
+Restart=on-failure
+RestartSec=2s
+CPUAffinity=24-31
+MemoryMax=4G
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/run/nemosymphtron /opt/symphony/state
+
+[Install]
+WantedBy=multi-user.target

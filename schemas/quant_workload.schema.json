@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quanux.org/schemas/nemosymphtron/quant_workload.schema.json",
+  "title": "NemoSymphTron Quantitative Workload Schema (v1)",
+  "description": "CUDA quantitative simulation and optimization workload specification.",
+  "type": "object",
+  "required": [
+    "kernel_id",
+    "num_paths",
+    "num_assets",
+    "time_steps"
+  ],
+  "properties": {
+    "kernel_id": {
+      "type": "string",
+      "enum": [
+        "MONTE_CARLO_VAR",
+        "CHOLESKY_DECOMP",
+        "CUOPT_PORTFOLIO",
+        "TX_RISK_SCORE",
+        "FFT_OPTION_PRICING",
+        "NCCL_MULTI_NODE_SIM"
+      ]
+    },
+    "num_paths": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "num_assets": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "time_steps": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "confidence_alpha": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 0.9999
+    },
+    "use_fp8_tensor_core": {
+      "type": "boolean"
+    },
+    "drift": {
+      "type": "number"
+    },
+    "volatility": {
+      "type": "number"
+    },
+    "spot_price": {
+      "type": "number"
+    },
+    "strike_price": {
+      "type": "number"
+    },
+    "risk_free_rate": {
+      "type": "number"
+    },
+    "covariance_flat": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "additionalProperties": false
+}
