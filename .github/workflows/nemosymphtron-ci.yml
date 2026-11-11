@@ -1,0 +1,33 @@
+name: NemoSymphTron CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    name: Build & CTest (${{ matrix.runner }})
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install Clang 19 on Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-19
+          echo 'CXX=clang++-19' >> "$GITHUB_ENV"
+      - name: Configure and compile C++26 engine, MCP gateway, and qxctl extension
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j 2
+      - name: Run C++26 and Python CTest verification suite
+        run: ctest --test-dir build --output-on-failure
