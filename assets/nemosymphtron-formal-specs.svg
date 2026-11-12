@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 980" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dividerRule3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e2227"/>
+      <stop offset="20%" stop-color="#72f6ff"/>
+      <stop offset="40%" stop-color="#8f7cff"/>
+      <stop offset="60%" stop-color="#ff69c6"/>
+      <stop offset="80%" stop-color="#d7ff69"/>
+      <stop offset="100%" stop-color="#1e2227"/>
+    </linearGradient>
+    <linearGradient id="spectralBarBottom" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#72f6ff"/>
+      <stop offset="25%" stop-color="#8f7cff"/>
+      <stop offset="50%" stop-color="#ff69c6"/>
+      <stop offset="75%" stop-color="#ffb45f"/>
+      <stop offset="100%" stop-color="#d7ff69"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Frame -->
+  <rect width="960" height="980" fill="#050607" stroke="#1e2227" stroke-width="2"/>
+
+  <!-- SECTION 04: DUAL-PLANE C++26 ARCHITECTURE -->
+  <text x="40" y="46" fill="#858b92" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" letter-spacing="2">04 // DUAL-PLANE C++26 RUNTIME &amp; HARDWARE ISOLATION</text>
+  <text x="40" y="82" fill="#f6f7f8" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.8">Strict Separation of Sub-Microsecond Execution &amp; Agentic Control</text>
+
+  <!-- Plane 1 & Plane 2 Side-by-Side Cards -->
+  <rect x="40" y="106" width="880" height="236" fill="#080a0b" stroke="#1e2227" stroke-width="1"/>
+  <line x1="480" y1="106" x2="480" y2="342" stroke="#1e2227" stroke-width="1"/>
+
+  <!-- Plane 1 Card -->
+  <text x="64" y="136" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="10.5" letter-spacing="1.4">PLANE 01 // nemosymphtron-engine</text>
+  <text x="64" y="164" fill="#f6f7f8" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="700">Sovereign C++26 CUDA &amp; Beads Daemon</text>
+  <text x="64" y="192" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">• <tspan fill="#f6f7f8" font-weight="600">Pool 1 (Symphony Fast-Path):</tspan> Lock-free 64B-aligned SPSC</text>
+  <text x="76" y="212" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">ring buffer (<tspan fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace">/nemosymphtron_fastpath</tspan>), CUDA stream priority</text>
+  <text x="76" y="232" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5"><tspan fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace">-1</tspan> (Blackwell) / <tspan fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace">-2</tspan> (Rubin), zero LLM/MCP interference.</text>
+  <text x="64" y="258" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">• <tspan fill="#f6f7f8" font-weight="600">Pool 2 (Dynamic Agent Stream Pool):</tspan> Length-prefixed binary</text>
+  <text x="76" y="278" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">wire protocol over <tspan fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace">0600 AF_UNIX</tspan>, <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">O(1) constexpr</tspan> 64-bit</text>
+  <text x="76" y="298" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5"><tspan fill="#ff69c6" font-family="'SFMono-Regular', Consolas, monospace">SIVFlags</tspan> verification, and per-agent non-blocking streams.</text>
+
+  <!-- Plane 2 Card -->
+  <text x="504" y="136" fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace" font-size="10.5" letter-spacing="1.4">PLANE 02 // nemosymphtron-mcp &amp; nemosymphtron-ctl</text>
+  <text x="504" y="164" fill="#f6f7f8" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="700">MCP (2025-11-25) Gateway &amp; qxctl Owner</text>
+  <text x="504" y="192" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">• <tspan fill="#f6f7f8" font-weight="600">35 Registered qxctl Commands:</tspan> Packaged in</text>
+  <text x="516" y="212" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5"><tspan fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace">catalog/qxctl_extension_commands.json</tspan> (<tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">nst</tspan>, <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">siv</tspan>, <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">beads</tspan>, <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">shv</tspan>, <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">scv</tspan>).</text>
+  <text x="504" y="238" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">• <tspan fill="#f6f7f8" font-weight="600">54 JSON-RPC 2.0 MCP Tools:</tspan> Exposes <tspan fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace">nemosymphtron_connection</tspan></text>
+  <text x="516" y="258" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">plus 53 operation-specific read, preview, and apply tools.</text>
+  <text x="504" y="284" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">• <tspan fill="#f6f7f8" font-weight="600">Session-Pinned Safety Circuits:</tspan> 5-minute preview tokens,</text>
+  <text x="516" y="304" fill="#989ea4" font-family="Inter, -apple-system, sans-serif" font-size="12.5">SHA-256 file pinning, and Compare-And-Swap state digests.</text>
+
+  <!-- SECTION 05: 6 HARDWARE-ACCELERATED QUANTITATIVE KERNELS -->
+  <text x="40" y="388" fill="#858b92" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" letter-spacing="2">05 // SIX HARDWARE-ACCELERATED QUANTITATIVE &amp; DISTRIBUTED KERNELS</text>
+
+  <rect x="40" y="406" width="880" height="272" fill="#080a0b" stroke="#1e2227" stroke-width="1"/>
+  <rect x="41" y="407" width="878" height="36" fill="#0b0d0f"/>
+  <line x1="40" y1="443" x2="920" y2="443" stroke="#1e2227" stroke-width="1"/>
+  <line x1="40" y1="482" x2="920" y2="482" stroke="#181c20" stroke-width="1"/>
+  <line x1="40" y1="521" x2="920" y2="521" stroke="#181c20" stroke-width="1"/>
+  <line x1="40" y1="560" x2="920" y2="560" stroke="#181c20" stroke-width="1"/>
+  <line x1="40" y1="599" x2="920" y2="599" stroke="#181c20" stroke-width="1"/>
+  <line x1="40" y1="638" x2="920" y2="638" stroke="#181c20" stroke-width="1"/>
+
+  <text x="60" y="429" fill="#858b92" font-family="'SFMono-Regular', Consolas, monospace" font-size="10.5" letter-spacing="0.8">KERNEL IDENTIFIER</text>
+  <text x="285" y="429" fill="#858b92" font-family="'SFMono-Regular', Consolas, monospace" font-size="10.5" letter-spacing="0.8">QUANTITATIVE / CLUSTER OPERATION</text>
+  <text x="900" y="429" fill="#858b92" font-family="'SFMono-Regular', Consolas, monospace" font-size="10.5" letter-spacing="0.8" text-anchor="end">ACCELERATOR</text>
+
+  <text x="60" y="467" fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">01 · MONTE_CARLO_VAR</text>
+  <text x="285" y="467" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Multi-asset Geometric Brownian Motion 99% VaR &amp; CVaR tail reduction</text>
+  <text x="900" y="467" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">cuRAND / FP64</text>
+
+  <text x="60" y="506" fill="#8f7cff" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">02 · CHOLESKY_DECOMP</text>
+  <text x="285" y="506" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Positive-definite covariance matrix LL^T factorization &amp; conditioning</text>
+  <text x="900" y="506" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">cuSOLVER</text>
+
+  <text x="60" y="545" fill="#ff69c6" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">03 · CUOPT_PORTFOLIO</text>
+  <text x="285" y="545" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Mean-variance &amp; Sharpe ratio simplex portfolio weight optimization</text>
+  <text x="900" y="545" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">cuBLAS / cuOpt</text>
+
+  <text x="60" y="584" fill="#ffb45f" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">04 · TX_RISK_SCORE</text>
+  <text x="285" y="584" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Sub-millisecond inline anomaly scoring (ALLOW / CHALLENGE / BLOCK)</text>
+  <text x="900" y="584" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">Nemotron Nano FP4</text>
+
+  <text x="60" y="623" fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">05 · FFT_OPTION_PRICING</text>
+  <text x="285" y="623" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Carr-Madan Fast Fourier Transform spectral option surface pricing</text>
+  <text x="900" y="623" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">cuFFT</text>
+
+  <text x="60" y="662" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">06 · NCCL_MULTI_NODE_SIM</text>
+  <text x="285" y="662" fill="#d8dcdf" font-family="'SFMono-Regular', Consolas, monospace" font-size="11.5">Multi-node RoCEv2 &amp; NVLink 6 SHARPv4 All-Reduce collective sync</text>
+  <text x="900" y="662" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" text-anchor="end">NCCL / SHARPv4</text>
+
+  <!-- SECTION 06: VERIFICATION & SYMPHONY INTEGRATION SUMMARY -->
+  <rect x="40" y="710" width="880" height="184" fill="#080a0b" stroke="#262b31" stroke-width="1"/>
+  <text x="64" y="742" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" letter-spacing="1.8">06 // SOVEREIGN SYMPHONY INTEGRATION &amp; CTEST VERIFICATION</text>
+  <text x="64" y="772" fill="#f6f7f8" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="700">Zero Upstream Modification · Explicit Prefix Binding · 6/6 CTest Suites</text>
+  <text x="64" y="800" fill="#b6bbc0" font-family="Inter, -apple-system, sans-serif" font-size="13.5">NemoSymphTron never alters <tspan fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace">QuanuX/Symphony</tspan>. Its 35 <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">qxctl</tspan> extension routes and 54 MCP tools attach</text>
+  <text x="64" y="822" fill="#b6bbc0" font-family="Inter, -apple-system, sans-serif" font-size="13.5">only when explicitly registered to an operator-owned Symphony installation prefix and <tspan fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace">--tops-id</tspan> UUID.</text>
+
+  <rect x="64" y="840" width="832" height="36" fill="#0b0d0f" stroke="#1e2227" stroke-width="1"/>
+  <text x="80" y="863" fill="#72f6ff" font-family="'SFMono-Regular', Consolas, monospace" font-size="11">CTEST SUITES:</text>
+  <text x="185" y="863" fill="#d7ff69" font-family="'SFMono-Regular', Consolas, monospace" font-size="11">✓ fastpath-shm  ✓ siv-beads-unit  ✓ engine-ipc  ✓ mcp-gateway  ✓ multi-agent-cluster  ✓ qxctl-extension</text>
+
+  <!-- Footer Bar -->
+  <line x1="1" y1="924" x2="959" y2="924" stroke="#1e2227" stroke-width="1"/>
+  <text x="40" y="954" fill="#f6f7f8" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" font-weight="700" letter-spacing="1">QUANUX VENTURES LLC <tspan fill="#858b92" font-weight="400">// OPEN SYSTEMS FOR QUANTITATIVE TRADING · AGPL-3.0-ONLY</tspan></text>
+  <text x="920" y="954" fill="#858b92" font-family="'SFMono-Regular', Consolas, monospace" font-size="11" letter-spacing="1" text-anchor="end">AGENTIC-FIRST // HUMANS WELCOME</text>
+  <rect x="1" y="975" width="958" height="4" fill="url(#spectralBarBottom)"/>
+</svg>
