@@ -36,6 +36,23 @@ private:
   int fd_;
 };
 
+class ScopedWorkerJoin {
+public:
+  ScopedWorkerJoin(std::atomic<bool>& stop_flag, std::thread& worker) noexcept
+      : stop_flag_(stop_flag), worker_(worker) {}
+  ~ScopedWorkerJoin() {
+    stop_flag_.store(true, std::memory_order_relaxed);
+    if (worker_.joinable()) {
+      worker_.join();
+    }
+  }
+  ScopedWorkerJoin(const ScopedWorkerJoin&) = delete;
+  ScopedWorkerJoin& operator=(const ScopedWorkerJoin&) = delete;
+private:
+  std::atomic<bool>& stop_flag_;
+  std::thread& worker_;
+};
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -75,12 +92,14 @@ int main(int argc, char** argv) {
     }
 
     // Worker Thread 1: Sovereign Symphony Fast-Path Poller (Pool 1)
-    std::jthread fastpath_worker([&](std::stop_token st) {
+    std::atomic<bool> worker_stop{false};
+    std::thread fastpath_worker([&]() {
       (void)nemosymphtron::shv::SHVEnforcer::EnforceThreadAndMemoryLocks(
           0, rubin_mode ? 23 : 15, false);
       auto* channel = shm_segment.channel();
       nemosymphtron::fastpath::FastPathCommand cmd{};
-      while (!st.stop_requested() && !g_stop_requested.load(std::memory_order_relaxed)) {
+      while (!worker_stop.load(std::memory_order_relaxed) &&
+             !g_stop_requested.load(std::memory_order_relaxed)) {
         const auto now_ns = static_cast<std::uint64_t>(
             std::chrono::duration_cast<std::chrono::nanoseconds>(
                 std::chrono::steady_clock::now().time_since_epoch())
@@ -90,7 +109,7 @@ int main(int argc, char** argv) {
         if (channel->command_channel.Pop(cmd)) {
           const auto resp = engine.ExecuteFastPathCommand(cmd);
           while (!channel->response_channel.Push(resp) &&
-                 !st.stop_requested() &&
+                 !worker_stop.load(std::memory_order_relaxed) &&
                  !g_stop_requested.load(std::memory_order_relaxed)) {
             std::this_thread::yield();
           }
@@ -103,6 +122,7 @@ int main(int argc, char** argv) {
         }
       }
     });
+    ScopedWorkerJoin worker_guard(worker_stop, fastpath_worker);
 
     // Main Thread / Worker 2: Dynamic Agent IPC Server (Pool 2)
     (void)nemosymphtron::shv::SHVEnforcer::EnforceThreadAndMemoryLocks(
@@ -131,7 +151,10 @@ int main(int argc, char** argv) {
       }
     }
 
-    fastpath_worker.request_stop();
+    worker_stop.store(true, std::memory_order_relaxed);
+    if (fastpath_worker.joinable()) {
+      fastpath_worker.join();
+    }
     if (listen_fd >= 0) {
       ::close(listen_fd);
       nemosymphtron::remove_local_socket(socket_path);
