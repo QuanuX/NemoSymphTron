@@ -1,0 +1,35 @@
+name: Published macOS package
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published NemoSymphTron release tag
+        required: true
+        default: v0.2.0-beta.2.1
+  pull_request:
+    paths:
+      - '.github/workflows/published-macos.yml'
+      - 'tests/test_published_macos.py'
+permissions:
+  contents: read
+jobs:
+  installed-release:
+    name: Install published package on Apple Silicon
+    runs-on: macos-26
+    timeout-minutes: 12
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || 'v0.2.0-beta.2.1' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Verify public assets and exercise their native read operations
+        run: python3 tests/test_published_macos.py "$RELEASE_TAG" "$RUNNER_TEMP/published-macos-receipt.json"
+      - name: Save package hashes and native results
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: published-macos-arm64-receipt
+          path: ${{ runner.temp }}/published-macos-receipt.json
+          if-no-files-found: error
