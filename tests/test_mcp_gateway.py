@@ -104,7 +104,7 @@ def main() -> int:
                         "name": "nemosymphtron_nst_status",
                         "arguments": {
                             "prefix": str(prefix_dir),
-                            "version": "0.2.0-alpha.1",
+                            "version": "0.2.0-beta.2.1",
                             "tops-id": tops_id,
                         },
                     },
@@ -127,7 +127,7 @@ def main() -> int:
                         "name": "nemosymphtron_shv_nst_lock_preview",
                         "arguments": {
                             "prefix": str(prefix_dir),
-                            "version": "0.2.0-alpha.1",
+                            "version": "0.2.0-beta.2.1",
                             "tops-id": tops_id,
                             "expected-state-digest": "absent",
                         },

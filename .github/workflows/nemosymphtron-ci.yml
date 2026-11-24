@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-24.04, macos-15]
+        runner: [ubuntu-24.04, ubuntu-24.04-arm, macos-15]
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 15
     steps:
@@ -27,7 +27,20 @@ jobs:
           echo 'CXX=clang++-19' >> "$GITHUB_ENV"
       - name: Configure and compile C++26 engine, MCP gateway, and qxctl extension
         run: |
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DNEMOSYMPHTRON_ENABLE_CUDA=OFF
           cmake --build build -j 2
       - name: Run C++26 and Python CTest verification suite
         run: ctest --test-dir build --output-on-failure
+      - name: Build the Ubuntu release archive
+        if: runner.os == 'Linux'
+        run: |
+          arch=$(uname -m)
+          if [ "$arch" = aarch64 ]; then arch=arm64; fi
+          python3 scripts/package_release.py --build build --target "ubuntu24.04-$arch" --out dist
+      - name: Save the verified Ubuntu archive
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: nemosymphtron-${{ matrix.runner }}
+          path: dist/*.mcpb
+          if-no-files-found: error
