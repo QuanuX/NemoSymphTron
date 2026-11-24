@@ -88,6 +88,10 @@ def install_tree(staged, target):
     if target.is_symlink():
         raise ValueError(f'An existing symlink occupies {target}')
     if target.exists():
+        old_names = {p.relative_to(target) for p in target.rglob('*')}
+        new_names = {p.relative_to(staged) for p in staged.rglob('*')}
+        if old_names != new_names:
+            raise ValueError(f'Existing directory differs: {target}. Select a separate --prefix or workspace.')
         for source in staged.rglob('*'):
             existing = target / source.relative_to(staged)
             if existing.is_symlink() or (source.is_file() and (not existing.is_file() or source.read_bytes() != existing.read_bytes())):
@@ -128,7 +132,7 @@ def register(client, base, runtime, workspace, codex):
         parent.mkdir(parents=True, exist_ok=True)
         location = parent / runtime.name
     else:
-        parent = workspace.resolve(strict=True) / '.agents/plugins'
+        parent = (workspace.resolve(strict=True) / '.agents/plugins') if workspace else (Path.home() / '.gemini/config/plugins')
         parent.mkdir(parents=True, exist_ok=True)
         location = parent / 'nemosymphtron'
     with tempfile.TemporaryDirectory(dir=parent) as tmp:
@@ -137,7 +141,6 @@ def register(client, base, runtime, workspace, codex):
         plugin.mkdir(parents=True)
         for name in ('skills', 'rules', 'assets'):
             shutil.copytree(runtime / name, plugin / name)
-        shutil.copy2(runtime / 'GEMINI.md', plugin / 'GEMINI.md')
         server = {'command': str(mcp), 'args': args}
         if client == 'codex':
             portable = {'$schema': 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json', 'name': 'nemosymphtron', 'version': VERSION,
@@ -145,13 +148,21 @@ def register(client, base, runtime, workspace, codex):
                         'author': {'name': 'QuanuX', 'url': 'https://quanux.org'}, 'homepage': f'https://github.com/{REPO}',
                         'extensions': {'com.openai': {'requires_local_executor': True, 'interface': {'displayName': 'NemoSymphTron', 'shortDescription': 'Explore NemoSymphTron alongside Symphony', 'supportURL': 'https://support.quanux.org', 'defaultPrompt': [FIRST_PROMPT]}}}}
             write_json(plugin / 'plugin.json', portable)
-            write_json(plugin / 'mcp.json', {'mcpServers': {'nemosymphtron': {'type': 'stdio', **server}}})
+            (plugin / 'bin').mkdir()
+            shutil.copy2(mcp, plugin / 'bin/nemosymphtron-mcp')
+            (plugin / 'catalog').mkdir()
+            shutil.copy2(runtime / 'catalog/tools.json', plugin / 'catalog/tools.json')
+            write_json(plugin / 'mcp.json', {
+                '$schema': 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',
+                'mcpServers': {'nemosymphtron': {'type': 'stdio', 'command': './bin/nemosymphtron-mcp',
+                    'args': ['--config', str(connection), '--tool-catalog', '${PLUGIN_ROOT}/catalog/tools.json'], 'cwd': '${PLUGIN_ROOT}'}}})
             market = json.loads((runtime / '.agents/plugins/marketplace.json').read_text())
             market['plugins'][0]['source']['path'] = './plugin'
             write_json(tree / '.agents/plugins/marketplace.json', market)
         else:
             manifest = json.loads((runtime / 'plugin.json').read_text())
-            manifest.pop('userConfig', None)
+            manifest = {key: manifest[key] for key in ('name', 'version', 'description', 'author', 'homepage', 'repository', 'license', 'keywords')}
+            manifest['logo'] = 'assets/favicon.svg'
             write_json(plugin / 'plugin.json', manifest)
             write_json(plugin / 'mcp_config.json', {'mcpServers': {'nemosymphtron': server}})
         install_tree(tree, location)
@@ -164,16 +175,24 @@ def register(client, base, runtime, workspace, codex):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--client', required=True, choices=('codex', 'antigravity'))
-    parser.add_argument('--workspace', type=Path, default=Path.cwd(), help='Antigravity workspace (default: current directory)')
+    parser.add_argument('--workspace', type=Path, help='Scope the Antigravity plugin to an existing workspace (default: install for this user)')
     parser.add_argument('--prefix', type=Path, default=Path.home() / '.local/share/quanux/nemosymphtron')
     parser.add_argument('--codex', help='Path to a Codex CLI with plugin marketplace support')
     parser.add_argument('--archive', type=Path, help='Use a previously downloaded release MCPB')
     parser.add_argument('--sha256', help='SHA-256 from the release for --archive')
     args = parser.parse_args()
+    if args.workspace and args.client != 'antigravity':
+        parser.error('--workspace applies to Antigravity')
     target = target_name()
-    codex = args.codex or shutil.which('codex')
-    if args.client == 'codex' and not codex:
-        raise ValueError('Install the Codex CLI or use --codex /path/to/codex')
+    codex = None
+    if args.client == 'codex':
+        candidates = [args.codex] if args.codex else [shutil.which('codex'), '/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex']
+        for binary in candidates:
+            if binary and Path(binary).is_file() and subprocess.run([binary, 'plugin', 'add', '--help'], capture_output=True).returncode == 0:
+                codex = binary
+                break
+        if not codex:
+            raise ValueError('Install a Codex CLI with plugin support or use --codex /path/to/codex')
     data = package_bytes(args, target)
     base = args.prefix.expanduser().resolve()
     base.mkdir(parents=True, exist_ok=True, mode=0o700)

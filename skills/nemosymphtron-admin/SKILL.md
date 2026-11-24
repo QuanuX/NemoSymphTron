@@ -7,6 +7,10 @@ description: Administer QuanuX NemoSymphTron hardware acceleration, SIV governan
 
 Use this skill whenever inspecting, configuring, benchmarking, or executing workloads on **QuanuX NemoSymphTron** (`https://github.com/QuanuX/NemoSymphTron`).
 
+## First read-only experiment
+
+Call `nemosymphtron_connection`, then `nemosymphtron_commands_list` with empty arguments. Report the bridge version, routable command count and enabled non-read commands. With the companion Symphony plugin installed, call `symphony_connection` and report the separate owner connection. The beta.2.1 experiment uses a CPU package. Connection metadata is evidence of local registry access. Hardware status, engine state and model inference each require their own evidence.
+
 ## Mandatory Operational Sequence
 
 1. **Inspect Connection**:

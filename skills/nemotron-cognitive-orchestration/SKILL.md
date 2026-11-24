@@ -7,6 +7,8 @@ description: Route cognitive reasoning tasks across the NVIDIA Nemotron 3 hierar
 
 Use this skill to route prompts and quantitative tasks across the **NVIDIA Nemotron** model family under **Symphony Inference Vector (SIV)** governance.
 
+The CPU beta.2.1 experiment routes directives with a local deterministic parser. Returned model names and endpoints describe a policy choice. A real inference result requires a separately configured model service and evidence of its response.
+
 ## Cognitive Hierarchy & Routing
 
 1. **Nemotron 3 Ultra (`nvidia/nemotron-4-400b-moe-nvfp4`)**:

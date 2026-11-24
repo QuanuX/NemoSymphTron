@@ -4,6 +4,8 @@ import argparse
 import json
 from pathlib import Path
 import stat
+import platform
+import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +21,17 @@ def main():
     manifest = json.loads((ROOT / 'packaging/mcpb/manifest.json').read_text())
     manifest['compatibility']['platforms'] = ['darwin' if args.target.startswith('macos') else 'linux']
     version = manifest['version']
+    if args.target == 'macos15-universal':
+        for binary in BINARIES:
+            subprocess.run(['lipo', str(args.build / binary), '-verify_arch', 'x86_64', 'arm64'], check=True)
+    else:
+        machine = platform.machine()
+        expected = 'arm64' if machine in ('aarch64', 'arm64') else machine
+        if platform.system() != 'Linux' or args.target != 'ubuntu24.04-' + expected:
+            raise ValueError('The release target must match the native Linux build runner')
+    reported = subprocess.check_output([str(args.build.resolve() / 'nemosymphtron-mcp'), '--version'], text=True).strip()
+    if reported != 'nemosymphtron-mcp ' + version:
+        raise ValueError('The gateway and package manifest versions differ')
     files = {name: (args.build / name).read_bytes() for name in BINARIES}
     members = {'bin/' + k: v for k, v in files.items()}
     members['manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
