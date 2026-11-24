@@ -71,7 +71,7 @@ def probe_relay(binary: Path, socket_path: Path, timeout: float = 5.0) -> dict:
             "params": {
                 "protocolVersion": "2025-11-25",
                 "capabilities": {},
-                "clientInfo": {"name": "nemosymphtron-ipc-probe", "version": "0.2.0-alpha.1"},
+                "clientInfo": {"name": "nemosymphtron-ipc-probe", "version": "0.2.0-beta.2.1"},
             },
         })
         init_resp = recv()

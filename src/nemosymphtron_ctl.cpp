@@ -564,12 +564,16 @@ int main(int argc, char** argv) {
     const std::string registry_digest = nemosymphtron::buffer_sha256(commands.dump());
 
     const ParsedArgs args = parse_cli(argc, argv);
+    if (argc == 2 && std::string(argv[1]) == "--version") {
+      std::cout << "nemosymphtron-ctl " NEMOSYMPHTRON_VERSION "\n";
+      return 0;
+    }
     if (args.route.empty() || args.flags.contains("help")) {
-      std::cout << "nemosymphtron-ctl (QuanuX NemoSymphTron qxctl extension owner 0.2.0-alpha.1)\n";
+      std::cout << "nemosymphtron-ctl (QuanuX NemoSymphTron qxctl extension owner " NEMOSYMPHTRON_VERSION ")\n";
       return 0;
     }
     if (args.flags.contains("version") && args.route.size() == 1 && args.route[0] == "version") {
-      std::cout << "nemosymphtron-ctl 0.2.0-alpha.1\n";
+      std::cout << "nemosymphtron-ctl " NEMOSYMPHTRON_VERSION "\n";
       return 0;
     }
 
@@ -581,7 +585,7 @@ int main(int argc, char** argv) {
       json manifest = {
           {"protocol", "symphony.qxctl.command-registry.v1"},
           {"registry_kind", "observed"},
-          {"client_version", "0.2.0-alpha.1"},
+          {"client_version", NEMOSYMPHTRON_VERSION},
           {"executable_digest", exe_digest},
           {"registry_digest", registry_digest},
           {"commands", commands}};

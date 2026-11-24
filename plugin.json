@@ -1,6 +1,6 @@
 {
   "name": "nemosymphtron",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-beta.2.1",
   "description": "QuanuX NemoSymphTron NVIDIA Hardware Acceleration (DGX Spark Grace-Blackwell & Vera-Rubin), Nemotron Cognitive Orchestration, Tri-Vector (SHV/SCV/SIV) Governance, and Beads Multi-Agent Clustering Extension for Symphony.",
   "author": {
     "name": "QuanuX",

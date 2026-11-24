@@ -30,7 +30,7 @@ def main() -> int:
                 "--extension-catalog",
                 str(ext_cat),
                 "--version",
-                "0.2.0-alpha.1",
+                "0.2.0-beta.2.1",
                 "--tops-id",
                 tops_id,
             ],

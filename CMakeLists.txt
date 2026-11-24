@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(nemosymphtron
-  VERSION 1.0.0
+  VERSION 0.2.0
   DESCRIPTION "QuanuX NemoSymphTron: C++26 NVIDIA Grace-Blackwell/Vera-Rubin Hardware Acceleration, Nemotron Cognitive Control, Tri-Vector (SHV/SCV/SIV) Governance, and Beads Multi-Agent Clustering Extension for Symphony"
   LANGUAGES CXX)
 
@@ -38,7 +38,7 @@ target_include_directories(nemosymphtron_core
 target_compile_definitions(nemosymphtron_core
   PUBLIC
     NEMOSYMPHTRON_HAS_CUDA=${NEMOSYMPHTRON_HAS_CUDA}
-    NEMOSYMPHTRON_VERSION="1.0.0")
+    NEMOSYMPHTRON_VERSION="${PROJECT_VERSION}-beta.2.1")
 
 target_compile_options(nemosymphtron_core
   PUBLIC
